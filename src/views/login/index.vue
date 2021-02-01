@@ -3,7 +3,9 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">ログイン</h3>
+        <h3 class="title">
+          {{ $t('login.title') }}
+        </h3>
       </div>
 
       <el-form-item prop="username">
@@ -13,7 +15,7 @@
         <el-input
           ref="username"
           v-model="loginForm.username"
-          placeholder="Username"
+          :placeholder="$t('login.username')"
           name="username"
           type="text"
           tabindex="1"
@@ -31,7 +33,7 @@
             ref="password"
             v-model="loginForm.password"
             :type="passwordType"
-            placeholder="Password"
+            :placeholder="$t('login.password')"
             name="password"
             tabindex="2"
             autocomplete="on"
@@ -45,7 +47,9 @@
         </el-form-item>
       </el-tooltip>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">ログイン</el-button>
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">
+        {{ $t('login.logIn') }}
+      </el-button>
 
     </el-form>
   </div>
@@ -83,6 +87,7 @@ export default {
       passwordType: 'password',
       capsTooltip: false,
       loading: false,
+      showDialog: false,
       redirect: undefined,
       otherQuery: {}
     }
@@ -154,7 +159,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 $bg:#283443;
 $light_gray:#fff;
 $cursor: #fff;
@@ -247,6 +251,15 @@ $light_gray:#eee;
       margin: 0px auto 40px auto;
       text-align: center;
       font-weight: bold;
+    }
+
+    .set-language {
+      color: #fff;
+      position: absolute;
+      top: 3px;
+      font-size: 18px;
+      right: 0px;
+      cursor: pointer;
     }
   }
 
